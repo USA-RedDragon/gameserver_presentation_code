@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+message Packet {
+  enum PacketType {
+    AUTH = 0; // For handshake 
+    GAME = 1; // For things related to the current game like world location
+    DATA = 2; // For data like consumables used, points scored, etc
+    HEARTBEAT = 3; // UDP Heartbeat
+ }
+
+  PacketType type = 1;
+  uint32 sequence = 2; // The packet number, first sent is 1, second 2, etc
+  fixed32 messageLength = 3; // Number of bytes in the message, should be set 2nd to last
+  bytes message = 4; // The protobuf message, AES encrypted(RSA-encrypted AES key if type == AUTH)
+  google.protobuf.Timestamp timestamp = 5; // Seconds since epoch
+  fixed32 crc = 6; // The CRC32 checksum of the packet
+  string playerID = 7; // A uuid for the user
+  string address = 8; // The address of the user
+  uint32 port = 9; // The port of the usr
+}

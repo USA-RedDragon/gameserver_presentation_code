@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message ClientGameMessage {
+  int32 xDelta = 1;
+  int32 yDelta = 2;
+  int32 zDelta = 3;
+}
+
+message ClientDataMessage {
+    uint32 lostHealth = 1;
+    uint32 usedCoins = 2;
+    uint32 usedMana = 3;
+}

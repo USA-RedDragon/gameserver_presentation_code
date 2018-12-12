@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message ServerGameMessage {
+  int32 xPos = 1;
+  int32 yPos = 2;
+  int32 zPos = 3;
+}
+
+message ServerDataMessage {
+    uint32 health = 1;
+    uint32 coins = 2;
+    uint32 mana = 3;
+}
